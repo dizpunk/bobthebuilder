@@ -13,7 +13,7 @@ mkdir $HOME/Apps
 mv $BITWARDEN $HOME/Apps
 
 # Create .desktop entry 
-cat << EOF > Bitwarden.desktop
+cat << EOF | tee Bitwarden.desktop
 [Desktop Entry]
 Type=Application
 Version=1.0
