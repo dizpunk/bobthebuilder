@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+
+echo "---------- Installing Spotify ----------"
 
 # Add Flathub repository
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -9,3 +10,5 @@ sudo flatpak remote-modify flathub --enable
 
 # Install Spotify client
 flatpak install -y flathub com.spotify.Client
+
+echo "---------- Spotify Installed ----------"
