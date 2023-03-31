@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+
+echo "---------- Installing Brave Browser ----------"
 
 # Enable DNF plugins
 sudo dnf install dnf-plugins-core
@@ -12,3 +13,8 @@ sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
 # Install Brave
 sudo dnf install -y brave-browser
+
+# Fix Blurry Window
+# brave://flags/ -> Ozone Platform = Auto
+
+echo "---------- Brave Browser Installed ----------"
