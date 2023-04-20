@@ -16,8 +16,8 @@ mv $BITWARDEN $HOME/Apps
 # Install pairus icons
 sudo dnf install -y papirus-icon-theme
 
-# Create .desktop entry 
-cat << EOF | tee Bitwarden.desktop &> /dev/null 
+# Create .desktop entry
+cat << EOF | tee Bitwarden.desktop &> /dev/null
 [Desktop Entry]
 Type=Application
 Version=1.0
