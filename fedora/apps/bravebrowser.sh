@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "---------- Installing Brave Browser ----------"
+printf "\n\n\n---------- Installing Brave Browser ----------\n\n\n"
 
 # Enable DNF plugins
 sudo dnf install dnf-plugins-core
@@ -17,4 +17,4 @@ sudo dnf install -y brave-browser
 # Fix Blurry Window
 # brave://flags/ -> Ozone Platform = Auto
 
-echo "---------- Brave Browser Installed ----------"
+printf "\n\n\n---------- Brave Browser Installed ----------\n\n\n"
