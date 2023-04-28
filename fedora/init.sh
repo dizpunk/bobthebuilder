@@ -6,7 +6,7 @@ printf "\n\n\n---------- Installing Essential Packages ----------\n\n\n"
 sudo dnf check-update
 sudo dnf upgrade -y
 sudo dnf remove -y libreoffice-* rhythmbox
-sudo dnf install -y vim git gcc python3 btop speedtest-cli gnome-tweaks papirus-icon-theme
+sudo dnf install -y vim git gcc python3 btop speedtest-cli virt-manager gnome-tweaks papirus-icon-theme
 
 printf "\n\n\n---------- Essential Packages Installed ----------\n\n\n"
 
@@ -15,8 +15,12 @@ gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffe
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 
 
-# Install chosen apps
+# Install bashrc
+wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/bashrc &> /dev/null
+mv -f ./bashrc ~/.bashrc
 
+
+# Install chosen apps
 PS3="Select apps to install: "
 
 select apps in all choose none; do
