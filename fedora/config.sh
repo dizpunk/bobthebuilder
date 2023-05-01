@@ -14,7 +14,7 @@ gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffe
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 
 
-# Install bashrc
+# Install bashrc configuration
 printf "\n\n#################### Custom Bash Configurations\n\n"
 wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/bashrc &> /dev/null
 mv -f ./bashrc ~/.bashrc
