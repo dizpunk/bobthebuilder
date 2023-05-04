@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Install dependencies
+sudo apt install -y curl libfuse2 papirus-icon-theme
+
 # Get .AppImage executable
 curl -L "https://vault.bitwarden.com/download/?app=desktop&platform=linux" --output ./Bitwarden.AppImage
 BITWARDEN="$(pwd)/Bitwarden.AppImage"
@@ -10,9 +13,6 @@ chmod 755 $BITWARDEN
 # Move to new folder
 mkdir $HOME/Apps
 mv $BITWARDEN $HOME/Apps
-
-# Install dependencies
-sudo apt install -y libfuse2 papirus-icon-theme
 
 # Create .desktop entry
 cat << EOF | tee Bitwarden.desktop &> /dev/null
