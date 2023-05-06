@@ -10,7 +10,9 @@ sudo apt install -y vim git gcc python3 btop speedtest-cli virt-manager gnome-tw
 printf "\n\n#################### Fractional Scaling and Icon Theme\n\n"
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
-
+git clone https://github.com/PapirusDevelopmentTeam/papirus-folders
+sudo ./papirus-folders/papirus-folders -C yaru
+rm -fr ./papirus-folders
 
 # Install bashrc configuration
 printf "\n\n#################### Custom Bash Configurations\n\n"
