@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Cleanup and install essential packages
+printf "\n\n# Cleanup and Essential Packages\n\n"
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y vim git gcc python3 btop speedtest-cli virt-manager gnome-tweaks papirus-icon-theme
@@ -19,7 +20,7 @@ wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/bashrc &> /dev
 mv -f ./.bashrc ~/.bashrc
 
 # Install chosen apps
-printf "\n\n#################### Third-party Apps\n\n"
+printf "\n\n# Third-party Apps\n\n"
 PS3="Select apps to install: "
 
 select apps in all choose none; do
