@@ -6,6 +6,7 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y vim git gcc python3 btop speedtest-cli virt-manager gnome-tweaks papirus-icon-theme
 
+
 # Enable fractional scaling and set new icon theme
 printf "\n\n# Fractional Scaling and Icon Theme\n\n"
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
@@ -14,10 +15,20 @@ git clone https://github.com/PapirusDevelopmentTeam/papirus-folders
 sudo ./papirus-folders/papirus-folders -C yaru
 rm -fr ./papirus-folders
 
+
 # Install bashrc configuration
 printf "\n\n# Custom Bash Configurations\n\n"
 wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /dev/null
 mv -f ./.bashrc ~/.bashrc
+
+
+# Install aliases
+git clone https://github.com/dizpunk/dotfiles
+mv ./dotfiles/aliases/* .
+./aliases.sh
+rm -rf aliases.sh tools/ dotfiles/
+mv .aliases ~/
+
 
 # Install chosen apps
 printf "\n\n# Third-party Apps\n\n"

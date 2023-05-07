@@ -20,6 +20,14 @@ wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /de
 mv -f ./.bashrc ~/.bashrc
 
 
+# Install aliases
+git clone https://github.com/dizpunk/dotfiles
+mv ./dotfiles/aliases/* .
+./aliases.sh
+rm -rf aliases.sh tools/ dotfiles/
+mv .aliases ~/
+
+
 # Install chosen apps
 printf "\n\n# Third-party Apps\n\n"
 PS3="Select apps to install: "
