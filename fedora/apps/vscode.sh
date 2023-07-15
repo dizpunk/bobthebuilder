@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf "\n\n\n---------- Installing VSCode ----------\n\n\n"
+printf "\n\n\n#---------- Installing VSCode ----------#\n\n\n"
 
 # Import Microsoft keys
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -16,10 +16,7 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
 # Install VS Code
-dnf check-update
+sudo dnf check-update
 sudo dnf install -y code
 
-# Run natively on Wayland (not XWayland)
-sudo sed --i 's/Exec=.*/Exec=\/usr\/share\/code\/code --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WaylandWindowDecorations --unity-launch %F/g' /usr/share/applications/code.desktop
-
-printf "\n\n\n---------- VSCode Installed ----------\n\n\n"
+printf "\n\n\n#---------- VSCode Installed ----------#\n\n\n"

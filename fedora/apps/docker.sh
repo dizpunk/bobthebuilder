@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+
+printf "\n\n\n#---------- Installing Docker ----------#\n\n\n"
 
 # Install Docker repository
 sudo dnf -y install dnf-plugins-core
@@ -11,7 +12,7 @@ sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 # Create and add user to Docker group
 sudo groupadd docker
 sudo usermod -aG docker $USER
-echo "Log out and back in for changes to take effect"
+printf "## Log back in after logging out for changes to take effect ##"
 
 # Enable Docker at startup
 echo -n "Enable Docker at startup [y/n]? "
@@ -19,4 +20,7 @@ read RESPONSE
 if [[ "$RESPONSE" == "y" ]]; then
   sudo systemctl enable docker.service
   sudo systemctl enable containerd.service
+  printf "\n\n## Docker enabled at startup ##\n\n"
 fi
+
+printf "\n\n\n#---------- Docker Installed ----------#\n\n\n"

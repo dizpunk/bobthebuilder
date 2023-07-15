@@ -8,19 +8,19 @@ sudo dnf remove -y libreoffice-* rhythmbox
 sudo dnf install -y vim git gcc python3 btop speedtest-cli virt-manager gnome-tweaks papirus-icon-theme
 
 
-# Enable fractional scaling and set new icon theme
-printf "\n\n# Fractional Scaling and Icon Theme\n\n"
+# Enable fractional scaling
+printf "\n\n\n#---------- Fractional Scaling Enabled ----------#\n\n\n"
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 
 
 # Install bashrc configuration
-printf "\n\n# Custom Bash Configurations\n\n"
+printf "\n\n\n#---------- Custom Bash Configurations ----------#\n\n\n"
 wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /dev/null
 mv -f ./.bashrc ~/.bashrc
 
 
 # Install aliases
+printf "\n\n\n#---------- Install Aliases ----------#\n\n\n"
 git clone https://github.com/dizpunk/dotfiles
 mv ./dotfiles/aliases/* .
 ./aliases.sh
@@ -29,7 +29,8 @@ mv .aliases ~/
 
 
 # Install chosen apps
-printf "\n\n# Third-party Apps\n\n"
+printf "\n\n\n#---------- Third-party Apps ----------#\n\n\n"
+
 PS3="Select apps to install: "
 
 select apps in all choose none; do
@@ -42,7 +43,7 @@ select apps in all choose none; do
       ;;
     choose)
       declare -A Apps
-      Apps=(["Bitwarden"]="bitwarden.sh" ["Brave Browser"]="bravebrowser.sh"  ["Docker"]="docker.sh" ["VSCode"]="vscode.sh" ["Spotify"]="spotify.sh")
+      Apps=(["Bitwarden"]="bitwarden.sh" ["Docker"]="docker.sh" ["VSCode"]="vscode.sh" ["Spotify"]="spotify.sh")
       toInstall=()
       for app in "${!Apps[@]}"; do
         read -p "Do you want to install $app? (y/n) " answer
@@ -63,3 +64,5 @@ select apps in all choose none; do
       ;;
   esac
 done
+
+printf "\n\n\n#---------- Third-party Apps Installed ----------#\n\n\n"

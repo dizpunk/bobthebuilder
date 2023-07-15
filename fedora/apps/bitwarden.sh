@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf "\n\n\n---------- Installing Bitwarden ----------\n\n\n"
+printf "\n\n\n#---------- Installing Bitwarden ----------#\n\n\n"
 
 # Get .AppImage executable
 curl -L "https://vault.bitwarden.com/download/?app=desktop&platform=linux" --output ./Bitwarden.AppImage
@@ -31,4 +31,4 @@ EOF
 # Move entry to .desktop local applications folder
 mv ./Bitwarden.desktop $HOME/.local/share/applications/
 
-printf "---------- Bitwarden Installed ----------"
+printf "#---------- Bitwarden Installed ----------#"
