@@ -1,26 +1,25 @@
 #!/bin/bash
 
-# Cleanup and install essential packages
-printf "\n\n# Cleanup and Essential Packages\n\n"
-sudo dnf check-update
-sudo dnf upgrade -y
-sudo dnf remove -y libreoffice-* rhythmbox
-sudo dnf install -y vim git gcc python3 btop speedtest-cli virt-manager gnome-tweaks papirus-icon-theme
-
-
 # Enable fractional scaling
 printf "\n\n\n#---------- Fractional Scaling Enabled ----------#\n\n\n"
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
 
 
-# Install bashrc configuration
-printf "\n\n\n#---------- Custom Bash Configurations ----------#\n\n\n"
-wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /dev/null
-mv -f ./.bashrc ~/.bashrc
+# Shell configuration
+printf "\n\n\n#---------- Shell Configurations ----------#\n\n\n"
+read -p "Which shell would you like to use by default? (bash/zsh) " chosenShell
+
+if [[ "$chosenShell" == "zsh" ]]; then
+  wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/zsh/.zshrc &> /dev/null
+  mv -f ./.zshrc ~/.zshrc
+else
+  wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /dev/null
+  mv -f ./.bashrc ~/.bashrc
+fi
 
 
 # Install aliases
-printf "\n\n\n#---------- Install Aliases ----------#\n\n\n"
+printf "\n\n\n#---------- Aliases ----------#\n\n\n"
 git clone https://github.com/dizpunk/dotfiles
 mv ./dotfiles/aliases/* .
 ./aliases.sh
@@ -31,7 +30,7 @@ mv .aliases ~/
 # Install chosen apps
 printf "\n\n\n#---------- Third-party Apps ----------#\n\n\n"
 
-PS3="Select apps to install: "
+PS3="Select third-party apps: "
 
 select apps in all choose none; do
   case $apps in
