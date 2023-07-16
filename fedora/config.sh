@@ -27,7 +27,7 @@ rm -rf aliases.sh tools/ dotfiles/
 mv .aliases ~/
 
 
-# Install chosen apps
+# Install third-party apps
 printf "\n\n\n#---------- Third-party Apps ----------#\n\n\n"
 
 PS3="Select third-party apps: "
