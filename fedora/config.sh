@@ -6,16 +6,28 @@ gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffe
 
 
 # Shell configuration
-printf "\n\n\n#---------- Shell Configurations ----------#\n\n\n"
-read -p "Which shell would you like to use by default? (bash/zsh) " chosenShell
+printf "\n\n\n#---------- Shell Configuration ----------#\n\n\n"
+PS3="Select default shell => "
 
-if [[ "$chosenShell" == "zsh" ]]; then
-  wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/zsh/.zshrc &> /dev/null
-  mv -f ./.zshrc ~/.zshrc
-else
-  wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /dev/null
-  mv -f ./.bashrc ~/.bashrc
-fi
+select shell in bash zsh; do
+  case $shell in
+    bash)
+      wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /dev/null
+      mv -f ./.bashrc ~/.bashrc
+      break
+      ;;
+    zsh)
+      sudo dnf install -y zsh util-linux-user
+      wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/zsh/.zshrc &> /dev/null
+      mv -f ./.zshrc ~/.zshrc
+      chsh -s /bin/zsh
+      break
+      ;;
+    *)
+      printf "Invalid option: $REPLY. Selection must be a number (1=bash, 2=zsh).\n\n"
+      ;;
+  esac
+done
 
 
 # Install aliases
@@ -30,7 +42,7 @@ mv .aliases ~/
 # Install third-party apps
 printf "\n\n\n#---------- Third-party Apps ----------#\n\n\n"
 
-PS3="Select third-party apps: "
+PS3="Select third-party apps => "
 
 select apps in all choose none; do
   case $apps in

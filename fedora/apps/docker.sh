@@ -12,10 +12,10 @@ sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 # Create and add user to Docker group
 sudo groupadd docker
 sudo usermod -aG docker $USER
-printf "## Log back in after logging out for changes to take effect ##"
+printf "## Log back in for changes to take effect ##"
 
 # Enable Docker at startup
-echo -n "Enable Docker at startup [y/n]? "
+echo -en "\nEnable Docker at startup [y/n]? "
 read RESPONSE
 if [[ "$RESPONSE" == "y" ]]; then
   sudo systemctl enable docker.service
