@@ -1,17 +1,37 @@
 #!/bin/bash
 
 # Enable fractional scaling and set new icon theme
-printf "\n\n# Fractional Scaling and Icon Theme\n\n"
+printf "\n\n\n#---------- Enable Fractional Scaling ----------#\n\n\n"
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
 
 
-# Install bashrc configuration
-printf "\n\n# Custom Bash Configurations\n\n"
-wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /dev/null
-mv -f ./.bashrc ~/.bashrc
+# Shell configuration
+printf "\n\n\n#---------- Shell Configuration ----------#\n\n\n"
+PS3="Select default shell => "
+
+select shell in bash zsh; do
+  case $shell in
+    bash)
+      wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/bash/.bashrc &> /dev/null
+      mv -f ./.bashrc ~/.bashrc
+      break
+      ;;
+    zsh)
+      sudo apt install -y zsh
+      wget https://raw.githubusercontent.com/dizpunk/dotfiles/main/zsh/.zshrc &> /dev/null
+      mv -f ./.zshrc ~/.zshrc
+      chsh -s /bin/zsh
+      break
+      ;;
+    *)
+      printf "Invalid option: $REPLY. Selection must be a number (1=bash, 2=zsh).\n\n"
+      ;;
+  esac
+done
 
 
 # Install aliases
+printf "\n\n\n#---------- Aliases ----------#\n\n\n"
 git clone https://github.com/dizpunk/dotfiles
 mv ./dotfiles/aliases/* .
 ./aliases.sh
@@ -20,7 +40,7 @@ mv .aliases ~/
 
 
 # Install chosen apps
-printf "\n\n# Third-party Apps\n\n"
+printf "\n\n\n#---------- Third-party Apps ----------#\n\n\n"
 PS3="Select apps to install: "
 
 select apps in all choose none; do

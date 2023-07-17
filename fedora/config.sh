@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Enable fractional scaling
-printf "\n\n\n#---------- Fractional Scaling Enabled ----------#\n\n\n"
+printf "\n\n\n#---------- Enable Fractional Scaling ----------#\n\n\n"
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
 
 
