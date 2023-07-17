@@ -13,7 +13,7 @@ chmod 755 $BITWARDEN
 mkdir $HOME/Apps
 mv $BITWARDEN $HOME/Apps
 
-# Install pairus icons
+# Install papirus icons
 sudo dnf install -y papirus-icon-theme
 
 # Create .desktop entry
