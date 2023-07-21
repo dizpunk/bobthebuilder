@@ -9,7 +9,7 @@ sudo dnf upgrade -y --refresh
 # Clean up and install essential packages
 printf "\n\n\n#---------- Installing Essential Packages ----------#\n\n\n"
 
-garbage="libreoffice-* rhythmbox gnome-contacts gnome-photos gnome-maps gnome-weather gnome-clocks gnome-tour cheese"
+garbage="libreoffice-* rhythmbox gnome-contacts gnome-photos gnome-maps gnome-weather gnome-clocks gnome-tour cheese fedora-chromium-config*"
 essentialPackages="vim git exa btop speedtest-cli virt-manager seahorse firewall-config gnome-tweaks"
 
 sudo dnf remove -y $garbage
