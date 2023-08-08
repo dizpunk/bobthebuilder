@@ -1,4 +1,24 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+
+# Enable UFW with default deny policy
+sudo ufw default deny &> /dev/null
+sudo ufw enable
+
+
+# System update
+sudo apt update
+sudo apt full-upgrade -y
+
+
+# Install essential packages
+printf "\n\n\n#---------- Installing Essential Packages ----------#\n\n\n"
+
+essentialPackages="vim git exa btop lshw inxi lm_sensors speedtest-cli seahorse gufw virt-manager gnome-tweaks"
+
+sudo apt update
+sudo apt install -y $essentialPackages
+
 
 # Enable fractional scaling and set new icon theme
 printf "\n\n\n#---------- Enable Fractional Scaling ----------#\n\n\n"
@@ -74,3 +94,9 @@ select apps in all choose none; do
       ;;
   esac
 done
+
+
+# System reboot
+printf "\n\n\n#---------- System Reboot ----------#\n\n\n"
+sleep 3
+reboot
