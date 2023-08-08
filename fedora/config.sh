@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+center(){
+  text="$1"
+  cols=$(tput cols)
+  printf "%*s\n" $(((${#text}+$cols)/2)) "$text"
+}
 
 # Switch firewalld default profile to drop
 sudo firewall-cmd --set-default-zone=drop
@@ -10,7 +15,8 @@ sudo dnf upgrade -y --refresh
 
 
 # Clean up and install essential packages
-printf "\n\n\n#---------- Installing Essential Packages ----------#\n\n\n"
+center "Installing Essential Packages"
+echo -e "\n\n\n"
 
 garbage="libreoffice-* rhythmbox gnome-contacts gnome-photos gnome-maps gnome-weather gnome-clocks gnome-tour cheese fedora-chromium-config*"
 essentialPackages="vim git exa btop lshw inxi lm_sensors speedtest-cli virt-manager seahorse firewall-config gnome-tweaks"
@@ -20,12 +26,14 @@ sudo dnf install -y $essentialPackages
 
 
 # Enable fractional scaling
-printf "\n\n\n#---------- Enable Fractional Scaling ----------#\n\n\n"
+center "Enable Fractional Scaling"
+echo -e "\n\n\n"
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
 
 
 # Shell configuration
-printf "\n\n\n#---------- Shell Configuration ----------#\n\n\n"
+center "Shell Configuration"
+echo -e "\n\n\n"
 PS3="Select default shell => "
 
 select shell in bash zsh; do
@@ -50,7 +58,8 @@ done
 
 
 # Install aliases
-printf "\n\n\n#---------- Aliases ----------#\n\n\n"
+center "Aliases"
+echo -e "\n\n\n"
 git clone https://github.com/dizpunk/dotfiles
 mv ./dotfiles/aliases/* .
 ./aliases.sh
@@ -59,7 +68,8 @@ mv .aliases ~/
 
 
 # Install third-party apps
-printf "\n\n\n#---------- Third-party Apps ----------#\n\n\n"
+center "Third-party Apps"
+echo -e "\n\n\n"
 
 PS3="Select third-party apps => "
 
@@ -95,10 +105,12 @@ select apps in all choose none; do
   esac
 done
 
-printf "\n\n\n#---------- Third-party Apps Installed ----------#\n\n\n"
+center "Third-party Apps Installed"
+echo -e "\n\n\n"
 
 
 # System reboot
-printf "\n\n\n#---------- System Reboot ----------#\n\n\n"
+center "System Reboot"
+echo -e "\n\n\n"
 sleep 3
 reboot
