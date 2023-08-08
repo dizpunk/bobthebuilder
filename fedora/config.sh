@@ -1,4 +1,23 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+
+# Switch firewalld default profile to drop
+sudo firewall-cmd --set-default-zone=drop
+
+
+# System update
+sudo dnf upgrade -y --refresh
+
+
+# Clean up and install essential packages
+printf "\n\n\n#---------- Installing Essential Packages ----------#\n\n\n"
+
+garbage="libreoffice-* rhythmbox gnome-contacts gnome-photos gnome-maps gnome-weather gnome-clocks gnome-tour cheese fedora-chromium-config*"
+essentialPackages="vim git exa btop lshw inxi lm_sensors speedtest-cli virt-manager seahorse firewall-config gnome-tweaks"
+
+sudo dnf remove -y $garbage
+sudo dnf install -y $essentialPackages
+
 
 # Enable fractional scaling
 printf "\n\n\n#---------- Enable Fractional Scaling ----------#\n\n\n"
@@ -77,3 +96,9 @@ select apps in all choose none; do
 done
 
 printf "\n\n\n#---------- Third-party Apps Installed ----------#\n\n\n"
+
+
+# System reboot
+printf "\n\n\n#---------- System Reboot ----------#\n\n\n"
+sleep 3
+reboot
