@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 
+center(){
+  text="$1"
+  cols=$(tput cols)
+  printf "%*s\n" $(((${#text}+$cols)/2)) "$text"
+}
+
+
 # Enable UFW with default deny policy
 sudo ufw default deny &> /dev/null
 sudo ufw enable
@@ -12,7 +19,8 @@ sudo apt full-upgrade -y
 
 
 # Install essential packages
-printf "\n\n\n#---------- Installing Essential Packages ----------#\n\n\n"
+center "Installing Essential Packages"
+echo -e "\n\n\n"
 
 essentialPackages="vim git exa btop lshw inxi lm_sensors speedtest-cli seahorse gufw virt-manager gnome-tweaks"
 
@@ -21,12 +29,14 @@ sudo apt install -y $essentialPackages
 
 
 # Enable fractional scaling and set new icon theme
-printf "\n\n\n#---------- Enable Fractional Scaling ----------#\n\n\n"
+center "Enable Fractional Scaling"
+echo -e "\n\n\n"
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
 
 
 # Shell configuration
-printf "\n\n\n#---------- Shell Configuration ----------#\n\n\n"
+center "Shell Configuration"
+echo -e "\n\n\n"
 PS3="Select default shell => "
 
 select shell in bash zsh; do
@@ -51,7 +61,8 @@ done
 
 
 # Install aliases
-printf "\n\n\n#---------- Aliases ----------#\n\n\n"
+center "Aliases"
+echo -e "\n\n\n"
 git clone https://github.com/dizpunk/dotfiles
 mv ./dotfiles/aliases/* .
 ./aliases.sh
@@ -60,7 +71,8 @@ mv .aliases ~/
 
 
 # Install chosen apps
-printf "\n\n\n#---------- Third-party Apps ----------#\n\n\n"
+center "Third-party Apps"
+echo -e "\n\n\n"
 PS3="Select apps to install: "
 
 select apps in all choose none; do
@@ -97,6 +109,7 @@ done
 
 
 # System reboot
-printf "\n\n\n#---------- System Reboot ----------#\n\n\n"
+center "System Reboot"
+echo -e "\n\n\n"
 sleep 3
 reboot
