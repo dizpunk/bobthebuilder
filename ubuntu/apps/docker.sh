@@ -1,6 +1,4 @@
-#!/bin/bash
-
-printf "\n\n\n#---------- Installing Docker ----------#\n\n\n"
+#!/usr/bin/env bash
 
 # Install dependencies
 sudo apt-get update
@@ -20,7 +18,6 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 # Create and add user to Docker group
 sudo groupadd docker
 sudo usermod -aG docker $USER
-printf "\n## Log back in for changes to take effect ##\n"
 
 # Enable Docker at startup
 echo -en "\nEnable Docker at startup [y/n]? "
@@ -30,5 +27,3 @@ if [[ "$RESPONSE" == "y" ]]; then
   sudo systemctl enable containerd.service
   printf "\n\n## Docker enabled at startup ##\n\n"
 fi
-
-printf "\n\n\n#---------- Docker Installed ----------#\n\n\n"
