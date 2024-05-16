@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# Enable fractional scaling
+# Set display preferences
+org.gnome.mutter dynamic-workspaces false
+org.gnome.mutter workspaces-only-on-primary true
+gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &> /dev/null
 
 # Enable UFW with default deny policy
